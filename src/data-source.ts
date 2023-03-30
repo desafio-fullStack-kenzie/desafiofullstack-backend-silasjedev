@@ -1,38 +1,45 @@
-import "reflect-metadata"
-import "dotenv/config"
-import path from "path"
-import {DataSource, DataSourceOptions} from "typeorm"
+import "reflect-metadata";
+import "dotenv/config";
+import { DataSource, DataSourceOptions } from "typeorm";
+import { User } from "./entities/user.entity";
+import { Address } from "./entities/address.entity";
+import { Image } from "./entities/image.entity";
+import { Contact } from "./entities/contact.entity";
+import {initialmigration1680143077408} from "./migrations/1680143077408-initialmigration"
 
 const setDataSourceConfig = (): DataSourceOptions => {
-    const entitiesPath: string = path.join(__dirname, "./entities/**.{js,ts}");
-    const migrationsPath: string = path.join(
-        __dirname,
-        "./migrations/**.{js,ts}"
-    );
 
-    const nodeEnv= process.env.NODE_ENV;
+    const nodeEnv = process.env.NODE_ENV;
 
-    if(nodeEnv === "production") {
+    if (nodeEnv === "production") {
         return {
             type: "postgres",
             url: process.env.DATABASE_URL,
-            entities: [entitiesPath],
-            migrations: [migrationsPath],
+            entities: [User, Address, Image, Contact],
+            migrations: [initialmigration1680143077408],
         }
+    }
 
-    };
+    if (nodeEnv === "test") {
+        return {
+            type: "sqlite",
+            database: ":memory:",
+            synchronize: true,
+            entities: [User, Address, Image, Contact],
+        };
+    }
 
-    return{
+    return {
         type: "postgres",
         host: process.env.PGHOST,
         username: process.env.PGUSER,
         password: process.env.PGPASSWORD,
-        port: 5432,
+        port: parseInt(process.env.PGPORT),
         database: process.env.DB,
         synchronize: false,
         logging: true,
-        entities: [entitiesPath],
-        migrations: [migrationsPath],
+        entities: [User, Address, Image, Contact],
+        migrations: [initialmigration1680143077408],
     };
 };
 
