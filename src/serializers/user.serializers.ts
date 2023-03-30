@@ -62,4 +62,6 @@ const userUpdateSerializer: SchemaOf<iUserUpdateRequest> = yup.object().shape({
     imageUrl: yup.string().notRequired(),
 })
 
-export {userRequestSerializer, userResponseSerializer, userUpdateSerializer}
+const listUsersResponseSerialize: SchemaOf<iUserResponse[]> = yup.array(userResponseSerializer)
+
+export {userRequestSerializer, userResponseSerializer, userUpdateSerializer, listUsersResponseSerialize}

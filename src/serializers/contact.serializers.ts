@@ -54,5 +54,7 @@ const contactUpdateSerializer: SchemaOf<iContactUpdateRequest> = yup.object().sh
     })
 })
 
+const listContactsResponseSerializer: SchemaOf<iContactResponse[]> = yup.array(contactResponseSerializer)
 
-export { contactRequestSerializer ,contactResponseSerializer, contactUpdateSerializer }
+
+export { contactRequestSerializer ,contactResponseSerializer, contactUpdateSerializer, listContactsResponseSerializer }
