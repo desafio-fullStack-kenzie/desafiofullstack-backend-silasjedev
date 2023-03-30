@@ -1,11 +1,15 @@
 import { iAddressRequest, iAddressResponse } from "../addresses/addresses.interface"
-import { iUserResponse } from "../users/users.interface"
 
 interface iContactRequest{
     fullName: string
     email: string
     contact: string
     address?: iAddressRequest
+}
+
+interface iContactUserResponse{
+    id: string
+    fullName: string
 }
 
 interface iContactResponse{
@@ -15,10 +19,12 @@ interface iContactResponse{
     contact: string
     isActive: boolean
     address?: iAddressResponse
-    createdAt: string
-    updatedAt: string
-    user: iUserResponse
+    createdAt: Date
+    updatedAt: Date
+    user: iContactUserResponse
 }
+
+
 
 interface iContactUpdateRequest{
     fullName?: string

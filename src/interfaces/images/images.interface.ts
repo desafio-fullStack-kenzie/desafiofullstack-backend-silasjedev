@@ -5,8 +5,8 @@ interface iImageRequest{
 interface iImageResponse{
     id: string
     imageUrl: string
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
 }
 
 export {iImageRequest, iImageResponse}
