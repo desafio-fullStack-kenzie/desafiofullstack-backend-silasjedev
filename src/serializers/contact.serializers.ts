@@ -1,9 +1,10 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { iContactRequest, iContactResponse, iContactUpdateRequest } from "../interfaces/contacts/contacts.interface";
+import { iAddressUpdateRequest } from "../interfaces/addresses/addresses.interface";
+import { iContactRequestYup, iContactResponse, iContactUpdateRequest } from "../interfaces/contacts/contacts.interface";
 
 
-const contactRequestSerializer: SchemaOf<iContactRequest> = yup.object().shape({
+const contactRequestSerializer: SchemaOf<iContactRequestYup> = yup.object().shape({
     fullName: yup.string().required(),
     email: yup.string().email().required(),
     contact: yup.string().required(),
@@ -54,7 +55,15 @@ const contactUpdateSerializer: SchemaOf<iContactUpdateRequest> = yup.object().sh
     })
 })
 
+const addressUpdateSerializer: SchemaOf<iAddressUpdateRequest> = yup.object().shape({
+    city: yup.string().notRequired(),
+    state: yup.string().notRequired(),
+    zipCode: yup.string().notRequired(),
+    district: yup.string().notRequired(),
+    number: yup.string().notRequired()
+})
+
 const listContactsResponseSerializer: SchemaOf<iContactResponse[]> = yup.array(contactResponseSerializer)
 
 
-export { contactRequestSerializer ,contactResponseSerializer, contactUpdateSerializer, listContactsResponseSerializer }
+export { contactRequestSerializer ,contactResponseSerializer, contactUpdateSerializer, listContactsResponseSerializer, addressUpdateSerializer }

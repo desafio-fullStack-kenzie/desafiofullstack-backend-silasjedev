@@ -4,7 +4,14 @@ interface iContactRequest{
     fullName: string
     email: string
     contact: string
-    address?: iAddressResponse | iAddressRequest
+    address?: iAddressResponse
+}
+
+interface iContactRequestYup{
+    fullName: string
+    email: string
+    contact: string
+    address?: iAddressRequest
 }
 
 interface iContactUserResponse{
@@ -33,4 +40,4 @@ interface iContactUpdateRequest{
     address?: iAddressRequest
 }
 
-export {iContactRequest, iContactResponse, iContactUpdateRequest}
+export {iContactRequest, iContactResponse, iContactUpdateRequest, iContactRequestYup}
