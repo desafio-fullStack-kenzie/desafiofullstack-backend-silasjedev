@@ -7,7 +7,7 @@ interface iUserRequest{
     password: string
     contact: string
     isAdmin: boolean
-    image?: string
+    imageUrl?: string
 }
 
 interface iUserResponse{
@@ -15,12 +15,12 @@ interface iUserResponse{
     fullName: string
     email: string
     contact: string
-    image?: iImageResponse | null
-    contacts?: iContactResponse
+    imageUrl?: iImageResponse | null
+    contacts?: iContactResponse | null
     isAdmin: boolean
     isActive: boolean 
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
 }
 
 interface iUserUpdateRequest{
@@ -29,7 +29,7 @@ interface iUserUpdateRequest{
     password?: string
     contact?: string
     isAdmin?: boolean
-    image?: string
+    imageUrl?: string
 }
 
 export {iUserRequest, iUserResponse, iUserUpdateRequest}
