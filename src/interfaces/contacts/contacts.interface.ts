@@ -4,7 +4,7 @@ interface iContactRequest{
     fullName: string
     email: string
     contact: string
-    address?: iAddressRequest
+    address?: iAddressResponse | iAddressRequest
 }
 
 interface iContactUserResponse{
