@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { iImageRequest, iImageResponse } from "../interfaces/images/images.interface";
+import { iImageRequest} from "../interfaces/images/images.interface";
 import { iUserRequest, iUserResponse, iUserUpdateRequest } from "../interfaces/users/users.interface";
 
 const userRequestSerializer: SchemaOf<iUserRequest> = yup.object().shape({
@@ -62,6 +62,10 @@ const userUpdateSerializer: SchemaOf<iUserUpdateRequest> = yup.object().shape({
     imageUrl: yup.string().notRequired(),
 })
 
+const imageUpdateSerializer: SchemaOf<iImageRequest> = yup.object().shape({
+    imageUrl: yup.string().required()
+})
+
 const listUsersResponseSerialize: SchemaOf<iUserResponse[]> = yup.array(userResponseSerializer)
 
-export {userRequestSerializer, userResponseSerializer, userUpdateSerializer, listUsersResponseSerialize}
+export {userRequestSerializer, userResponseSerializer, userUpdateSerializer, listUsersResponseSerialize, imageUpdateSerializer}
