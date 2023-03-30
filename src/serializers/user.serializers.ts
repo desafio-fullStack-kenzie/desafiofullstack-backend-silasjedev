@@ -18,12 +18,12 @@ const userResponseSerializer: SchemaOf<iUserResponse> = yup.object().shape({
     fullName: yup.string().notRequired(),
     email: yup.string().email().notRequired(),
     contact: yup.string().notRequired(),
-    imageUrl: yup.object({
+    image: yup.object({
         id: yup.string().notRequired(),
         imageUrl: yup.string().notRequired(),
         createdAt: yup.date().notRequired(),
         updatedAt: yup.date().notRequired(),
-    }).notRequired().nullable(),
+    }).notRequired(),
     contacts: yup.object({
         id: yup.string().notRequired(),
         fullName: yup.string().notRequired(),

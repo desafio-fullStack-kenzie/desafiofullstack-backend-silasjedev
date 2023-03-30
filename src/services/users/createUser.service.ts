@@ -30,12 +30,18 @@ const createUserService = async (data: iUserRequest) => {
         await imagesRep.save(image)
     }
 
-    const createUser = usersRep.create({...data, image:image})
+    const findImg = await imagesRep.findOneBy({
+        imageUrl: data.imageUrl
+    })
+
+    const createUser = usersRep.create({...data, image: findImg})
     await usersRep.save(createUser)
 
     const dataResponse = await userResponseSerializer.validate(createUser, {
         stripUnknown: true
     })
+
+    console.log(dataResponse)
     return dataResponse
 }
 

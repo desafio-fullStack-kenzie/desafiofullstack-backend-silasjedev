@@ -15,8 +15,8 @@ interface iUserResponse{
     fullName: string
     email: string
     contact: string
-    imageUrl?: iImageResponse | null
-    contacts?: iContactResponse | null
+    image?: iImageResponse
+    // contacts?: iContactResponse | null
     isAdmin: boolean
     isActive: boolean 
     createdAt: Date
