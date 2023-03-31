@@ -1,6 +1,6 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
-import { iAddressUpdateRequest } from "../interfaces/addresses/addresses.interface";
+import { iAddressResponse } from "../interfaces/addresses/addresses.interface";
 import { iContactRequestYup, iContactResponse, iContactUpdateRequest } from "../interfaces/contacts/contacts.interface";
 
 
@@ -21,7 +21,7 @@ const contactRequestSerializer: SchemaOf<iContactRequestYup> = yup.object().shap
 const contactResponseSerializer: SchemaOf<iContactResponse> = yup.object().shape({
     id: yup.string().notRequired(),
     fullName: yup.string().notRequired(),
-    email: yup.string().notRequired(),
+    email: yup.string().email().notRequired(),
     contact: yup.string().notRequired(),
     isActive: yup.boolean().notRequired(),
     address: yup.object({
@@ -33,12 +33,13 @@ const contactResponseSerializer: SchemaOf<iContactResponse> = yup.object().shape
         number: yup.string().notRequired(),
         createdAt: yup.date().notRequired(),
         updatedAt: yup.date().notRequired()
-    }).notRequired().nullable(),
+    }).notRequired(),
     createdAt: yup.date().notRequired(),
     updatedAt: yup.date().notRequired(),
     user: yup.object({
         id: yup.string().notRequired(),
         fullName: yup.string().notRequired(),
+        email: yup.string().email().notRequired(),
     })
 });
 
@@ -46,22 +47,18 @@ const contactUpdateSerializer: SchemaOf<iContactUpdateRequest> = yup.object().sh
     fullName: yup.string().notRequired(),
     email: yup.string().email().notRequired(),
     contact: yup.string().notRequired(),
-    address: yup.object({
-        city: yup.string().notRequired(),
-        state: yup.string().notRequired(),
-        zipCode: yup.string().notRequired(),
-        district: yup.string().notRequired(),
-        number: yup.string().notRequired(),
-    })
-    
+    updatedAt: yup.date().notRequired(),
 })
 
-const addressUpdateSerializer: SchemaOf<iAddressUpdateRequest> = yup.object().shape({
+const addressUpdateSerializer: SchemaOf<iAddressResponse> = yup.object().shape({
+    id: yup.string().notRequired(),
     city: yup.string().notRequired(),
     state: yup.string().notRequired(),
     zipCode: yup.string().notRequired(),
     district: yup.string().notRequired(),
-    number: yup.string().notRequired()
+    number: yup.string().notRequired(),
+    updatedAt: yup.date().notRequired(),
+    createdAt: yup.date().notRequired()
 })
 
 const listContactsResponseSerializer: SchemaOf<iContactResponse[]> = yup.array(contactResponseSerializer)

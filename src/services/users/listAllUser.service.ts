@@ -11,9 +11,12 @@ const listAllUsersService = async (): Promise<iUserResponse[]> => {
             isActive: true,
         },
         relations:{
-            image: true
+            image: true,
+            contacts:true
         }
     })
+
+    console.log(listUsers)
 
     const dataResponse = listUsersResponseSerialize.validate(listUsers, {
         stripUnknown: true

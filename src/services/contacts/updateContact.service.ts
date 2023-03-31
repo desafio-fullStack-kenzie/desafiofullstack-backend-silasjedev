@@ -1,9 +1,9 @@
 import AppDataSource from "../../data-source";
 import { Contact } from "../../entities/contact.entity";
-import { iContactResponse, iContactUpdateRequest } from "../../interfaces/contacts/contacts.interface";
-import { contactResponseSerializer } from "../../serializers/contact.serializers";
+import { iContactUpdateRequest } from "../../interfaces/contacts/contacts.interface";
+import { contactUpdateSerializer } from "../../serializers/contact.serializers";
 
-const updateContactService = async (contactId: string, dataUpdate: iContactUpdateRequest): Promise<iContactResponse> => {
+const updateContactService = async (contactId: string, dataUpdate: iContactUpdateRequest): Promise<iContactUpdateRequest> => {
     const contactsRep = AppDataSource.getRepository(Contact)
 
     const findContact = contactsRep.findOne({
@@ -11,17 +11,17 @@ const updateContactService = async (contactId: string, dataUpdate: iContactUpdat
             id: contactId
         },
         relations: {
-            address: true
+            address: true,
         }
     })
 
     const updateContact = contactsRep.create({
         ...findContact,
-        ...dataUpdate
+        ...dataUpdate,
     })
     await contactsRep.save(updateContact)
 
-    const dataResponse = contactResponseSerializer.validate(updateContact, {
+    const dataResponse = contactUpdateSerializer.validate(updateContact, {
         stripUnknown: true
     })
     

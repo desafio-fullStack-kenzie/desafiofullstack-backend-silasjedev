@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { iAddressUpdateRequest } from "../../interfaces/addresses/addresses.interface";
-import { iContactRequest, iContactUpdateRequest } from "../../interfaces/contacts/contacts.interface";
+import { iContactRequest, iContactResponse, iContactUpdateRequest } from "../../interfaces/contacts/contacts.interface";
 import updateAddressContactService from "../../services/contacts/addressUpdate.service";
 import createContactService from "../../services/contacts/createContact.service";
 import deleteContactService from "../../services/contacts/deleteContact.service";
@@ -10,12 +10,15 @@ import updateContactService from "../../services/contacts/updateContact.service"
 
 const createContactController = async (req: Request, res: Response) => {
     const contactData: iContactRequest = req.body
-    const contact = await createContactService(contactData)
+    const id = req.user.id
+    
+    const contact = await createContactService(contactData, id);
     return res.status(201).json(contact);
 }
 
 const listAllContactsController = async (req: Request, res: Response) => {
-    const listContacts = await listAllContactsService()
+    const id = req.user.id
+    const listContacts = await listAllContactsService(id)
     return res.status(200).json(listContacts)
 }
 

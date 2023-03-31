@@ -1,7 +1,7 @@
 import * as yup from "yup";
 import { SchemaOf } from "yup";
 import { iImageRequest} from "../interfaces/images/images.interface";
-import { iUserRequest, iUserResponse, iUserUpdateRequest } from "../interfaces/users/users.interface";
+import { iUserCreatedResponse, iUserRequest, iUserResponse, iUserUpdateRequest } from "../interfaces/users/users.interface";
 
 const userRequestSerializer: SchemaOf<iUserRequest> = yup.object().shape({
     fullName: yup.string().required(),
@@ -42,11 +42,21 @@ const userResponseSerializer: SchemaOf<iUserResponse> = yup.object().shape({
         }).notRequired().nullable(),
         createdAt: yup.date().notRequired(),
         updatedAt: yup.date().notRequired(),
-        user: yup.object({
-            id: yup.string().notRequired(),
-            fullName: yup.string().notRequired(),
-        }).notRequired().nullable(), 
     }).notRequired().nullable(),
+    isAdmin: yup.boolean().notRequired(),
+    isActive: yup.boolean().notRequired(),
+    createdAt: yup.date().notRequired(),
+    updatedAt: yup.date().notRequired(),
+});
+const userCreatedResponseSerializer: SchemaOf<iUserCreatedResponse> = yup.object().shape({
+    id: yup.string().notRequired(),
+    fullName: yup.string().notRequired(),
+    email: yup.string().email().notRequired(),
+    contact: yup.string().notRequired(),
+    image: yup.object({
+        imageUrl: yup.string().notRequired(),
+        createdAt: yup.date().notRequired(),
+    }).notRequired(),
     isAdmin: yup.boolean().notRequired(),
     isActive: yup.boolean().notRequired(),
     createdAt: yup.date().notRequired(),
@@ -68,4 +78,4 @@ const imageUpdateSerializer: SchemaOf<iImageRequest> = yup.object().shape({
 
 const listUsersResponseSerialize: SchemaOf<iUserResponse[]> = yup.array(userResponseSerializer)
 
-export {userRequestSerializer, userResponseSerializer, userUpdateSerializer, listUsersResponseSerialize, imageUpdateSerializer}
+export {userRequestSerializer, userResponseSerializer, userUpdateSerializer, listUsersResponseSerialize, imageUpdateSerializer, userCreatedResponseSerializer}

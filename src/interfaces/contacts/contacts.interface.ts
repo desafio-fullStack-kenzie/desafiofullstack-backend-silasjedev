@@ -17,6 +17,7 @@ interface iContactRequestYup{
 interface iContactUserResponse{
     id: string
     fullName: string
+    email: string
 }
 
 interface iContactResponse{
@@ -28,7 +29,7 @@ interface iContactResponse{
     address?: iAddressResponse
     createdAt: Date
     updatedAt: Date
-    user: iContactUserResponse
+    // user: iContactUserResponse
 }
 
 
@@ -37,7 +38,7 @@ interface iContactUpdateRequest{
     fullName?: string
     email?: string
     contact?: string
-    address?: iAddressRequest
+    updatedAt?: Date
 }
 
 export {iContactRequest, iContactResponse, iContactUpdateRequest, iContactRequestYup}

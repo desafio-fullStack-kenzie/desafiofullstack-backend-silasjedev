@@ -1,5 +1,5 @@
 import { iContactResponse } from "../contacts/contacts.interface"
-import { iImageResponse } from "../images/images.interface"
+import { iImageCreatedResponse, iImageResponse } from "../images/images.interface"
 
 interface iUserRequest{
     fullName: string
@@ -15,8 +15,19 @@ interface iUserResponse{
     fullName: string
     email: string
     contact: string
-    image?: iImageResponse
-    // contacts?: iContactResponse | null
+    image: iImageResponse
+    contacts: iContactResponse
+    isAdmin: boolean
+    isActive: boolean 
+    createdAt: Date
+    updatedAt: Date
+}
+interface iUserCreatedResponse{
+    id: string
+    fullName: string
+    email: string
+    contact: string
+    image?: iImageCreatedResponse
     isAdmin: boolean
     isActive: boolean 
     createdAt: Date
@@ -34,4 +45,4 @@ interface iUserUpdateRequest{
 
 
 
-export {iUserRequest, iUserResponse, iUserUpdateRequest}
+export {iUserRequest, iUserResponse, iUserUpdateRequest, iUserCreatedResponse}

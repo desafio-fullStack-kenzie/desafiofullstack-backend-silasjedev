@@ -1,22 +1,31 @@
 import AppDataSource from "../../data-source";
 import { Address } from "../../entities/address.entity";
 import { Contact } from "../../entities/contact.entity";
-import { iContactRequest } from "../../interfaces/contacts/contacts.interface";
+import { User } from "../../entities/user.entity";
+import AppError from "../../errors/AppError";
+import { iContactResponse, iContactRequest} from "../../interfaces/contacts/contacts.interface";
 import { contactResponseSerializer } from "../../serializers/contact.serializers";
 
-const createContactService = async (data: iContactRequest) => {
+const createContactService = async (data: iContactRequest, id: string): Promise<iContactResponse> => {
     const contactsRep = AppDataSource.getRepository(Contact)
     const addressRep = AppDataSource.getRepository(Address)
-
-    const createAddress = addressRep.create(data.address)
-    await addressRep.save(createAddress)
+    const usersRep = AppDataSource.getRepository(User)
     
     const findAddress = await addressRep.findOneBy({
         id: data.address.id
     })
 
+    const findUser = await usersRep.findOneBy({
+        id: id
+    })
 
-    const createContact = contactsRep.create({...data, address: findAddress})
+    if(!findUser){
+        throw new AppError("tem algo errado", 400)
+    }
+
+    console.log(findUser)
+
+    const createContact = contactsRep.create({...data, address: findAddress, user: findUser})
     await contactsRep.save(createContact)
 
     const dataResponse = await contactResponseSerializer.validate(createContact, {

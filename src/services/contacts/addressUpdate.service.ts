@@ -1,9 +1,10 @@
 import AppDataSource from "../../data-source";
 import { Address } from "../../entities/address.entity";
 import { Contact } from "../../entities/contact.entity";
-import { iAddressUpdateRequest } from "../../interfaces/addresses/addresses.interface";
+import { iAddressResponse, iAddressUpdateRequest } from "../../interfaces/addresses/addresses.interface";
+import { addressUpdateSerializer } from "../../serializers/contact.serializers";
 
-const updateAddressContactService = async (addressData: iAddressUpdateRequest, contactId: string): Promise<Address> => {
+const updateAddressContactService = async (addressData: iAddressUpdateRequest, contactId: string): Promise<iAddressResponse> => {
     const contactsRep = AppDataSource.getRepository(Contact)
     const addressRep = AppDataSource.getRepository(Address)
 
@@ -16,8 +17,10 @@ const updateAddressContactService = async (addressData: iAddressUpdateRequest, c
         }
     })
 
-    const findAddress = await addressRep.findOneBy({
-        id: findContact.address.id
+    const findAddress = await addressRep.findOne({
+        where: {
+            id: findContact.address.id
+        }
     })
 
     const updateAddress = addressRep.create({
@@ -26,7 +29,11 @@ const updateAddressContactService = async (addressData: iAddressUpdateRequest, c
     })
     await addressRep.save(updateAddress)
 
-    return updateAddress
+    const dataResponse = addressUpdateSerializer.validate(updateAddress, {
+        stripUnknown: true
+    })
+
+    return dataResponse
 }
 
 export default updateAddressContactService;

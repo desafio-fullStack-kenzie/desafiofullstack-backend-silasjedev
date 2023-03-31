@@ -8,5 +8,10 @@ interface iImageResponse{
     createdAt: Date
     updatedAt: Date
 }
+interface iImageCreatedResponse{
+    imageUrl: string
+    createdAt: Date
+}
 
-export {iImageRequest, iImageResponse}
+
+export {iImageRequest, iImageResponse, iImageCreatedResponse}

@@ -3,7 +3,7 @@ import { Image } from "../../entities/image.entity";
 import { User } from "../../entities/user.entity";
 import AppError from "../../errors/AppError";
 import { iUserRequest } from "../../interfaces/users/users.interface";
-import { userResponseSerializer } from "../../serializers/user.serializers";
+import { userCreatedResponseSerializer } from "../../serializers/user.serializers";
 
 const createUserService = async (data: iUserRequest) => {
     const usersRep = AppDataSource.getRepository(User)
@@ -37,11 +37,11 @@ const createUserService = async (data: iUserRequest) => {
     const createUser = usersRep.create({...data, image: findImg})
     await usersRep.save(createUser)
 
-    const dataResponse = await userResponseSerializer.validate(createUser, {
+    const dataResponse = await userCreatedResponseSerializer.validate(createUser, {
         stripUnknown: true
     })
 
-    console.log(dataResponse)
+
     return dataResponse
 }
 

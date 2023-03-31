@@ -11,7 +11,8 @@ const listContactService = async (contactId: string): Promise<iContactResponse> 
             id: contactId,
         },
         relations: {
-            address:true
+            address:true,
+            user: true,
         }
     })
 
