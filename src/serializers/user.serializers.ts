@@ -8,8 +8,8 @@ const userRequestSerializer: SchemaOf<iUserRequest> = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().required(),
     contact: yup.string().required(),
-    isAdmin: yup.boolean().required(),
-    imageUrl: yup.string().notRequired(),
+    isAdmin: yup.boolean().notRequired(),
+    imageUrl: yup.string().nullable(),
 });
 
 

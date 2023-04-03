@@ -1,11 +1,12 @@
 {
   "name": "desafio_fullstack",
-	"version": "1.0.0",
-	"main": "server.ts",
-	"author": "Silas Marques",
-	"license": "MIT",
+  "version": "1.0.0",
+  "main": "server.ts",
+  "author": "Silas Marques",
+  "license": "MIT",
   "dependencies": {
     "bcryptjs": "2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "16.0.2",
     "express": "4.18.2",
     "express-async-errors": "3.1.1",

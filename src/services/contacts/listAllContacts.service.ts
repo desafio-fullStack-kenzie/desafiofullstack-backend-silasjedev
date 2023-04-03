@@ -9,6 +9,7 @@ const listAllContactsService = async (id: string): Promise<iContactResponse[]> =
 
     const listContacts = await contactsRep.find({
         where:{
+            isActive: true,
             user:{
                 id: id
             }
