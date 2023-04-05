@@ -1,6 +1,10 @@
 # desafiofullstack-backend-silasjedev
 
-Para inciar este projeto, é necessário instalar as dependências, que serão utilizadas nos testes. Portanto utilize o comando abaixo para instalar tais dependências:
+DesafioFullStack-kenzie
+Este é o backend da aplicação Desafio fullStack– um site de agenda de clientes.
+
+
+Para inciar este projeto, é necessário instalar as dependências. Portanto utilize o comando abaixo para instalar tais dependências:
 
 ````
 yarn install
@@ -17,69 +21,32 @@ yarn dev
 
 <br>
 
-# **Sobre os testes**
 
-Essa aplicação possui testes, que serão utilizados para validar, se todas as regras de negócio foram aplicadas de maneira correta.
+Endpoints
+A API tem um total de 24 endpoints, sendo divididos em 5 grupos: CRUD do user (que pode ser um doador e/ou donatário), session (login), donations 
+(doações), posts(solicitações de doações) e categories(que são as mesmas para donations e posts).
 
-Os testes estão localizados em `src/__tests__`.
+Endpoints:
 
-Na subpasta `integration` estão os testes.
+USERS
+POST   /users - Criação de usuário
+GET    /users/<id> - Lista um usuário específico
+PATCH  /users/<id> - Atualiza um usuário específico
+PATCH  /users/<id>/image - Atualiza uma imagem de usuário
+DELETE /users/<id> - Realiza um soft delete no usuário
 
-Já na subpasta `mocks` estão os dados que serão utilizados para os testes.
+Rotas Admin:
+GET    /users - Lista todos os usuários
 
-No arquivo `jest.config.json` estão algumas configurações necessárias para os testes rodarem.
+SESSION
+POST   /session - Gera o token de autenticação
 
-**`De modo algum altere qualquer um desses arquivos.`** Isso poderá comprometer a integridade dos testes.
-
-E também não altere o script de `test` localizado no `package.json`. Isso será utilizado para rodar os testes.
-
-<br>
-
-
-# **Rodando os testes** 
-
-Para rodar os testes é necessário que no seu terminal, você esteja dentro do diretório do projeto.
-
-Estando no terminal e dentro do caminho correto, você poderá utilizar os comandos a seguir:
-
-### Rodar todos os testes
-````
-yarn test
-````
-#
-### Rodar todos os testes e ter um log ainda mais completo
-````
-yarn test --all
-````
-#
-
-### Rodar os testes de uma pasta específica
-`detalhe: repare que tests está envolvido por 2 underlines. Isso se chama dunder.`
-````
-yarn test ./scr/__tests__/integration/<subpasta>
-````
-#
-### Rodar os testes de um arquivo específico
-````
-yarn test ./scr/__tests__/integration/<subpasta>/<arquivo>
-````
-#
-### Rodar um teste específico
-````
-yarn test -t <describe ou test específico envolto em aspas>
-````
-````
-\\ ex: yarn test -t "/categories"
-\\ rodaria os testes do describe "/categorias" no caminho
-\\ ./scr/__tests__/integration/categories/categoriesRoutes.test.ts
-````
-
-<br>
+CONTACTS
+POST   /donations - Criação de um contato
+GET    /donations - Lista todas os contatos
+GET    /donations/<id> - Lista um contato específico
+PATCH  /donations/<id> - Atualiza um contato
+DELETE /donations/<id> Realiza um soft delete no contato
 
 
-**Caso você queira verificar todas as opções de execução de testes, visite a [Documentação oficial do Jest](https://jestjs.io/docs/cli)**
-
-Após rodar um dos comandos aparecerá um log no seu terminal, contendo as informações da execução do teste.
-
-**Observação:** O teste pode demorar alguns segundos para ser finalizado. Quanto maior for o teste, mais tempo será consumido para a execução.
 
