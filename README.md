@@ -42,11 +42,11 @@ SESSION
 POST   /session - Gera o token de autenticação
 
 CONTACTS
-POST   /donations - Criação de um contato
-GET    /donations - Lista todas os contatos
-GET    /donations/<id> - Lista um contato específico
-PATCH  /donations/<id> - Atualiza um contato
-DELETE /donations/<id> Realiza um soft delete no contato
+POST   /contacts - Criação de um contato
+GET    /contacts - Lista todas os contatos
+GET    /contacts/<id> - Lista um contato específico
+PATCH  /contacts/<id> - Atualiza um contato
+DELETE /contacts/<id> Realiza um soft delete no contato
 
 
 
