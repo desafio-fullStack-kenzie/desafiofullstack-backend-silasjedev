@@ -23,8 +23,8 @@ yarn dev
 
 
 Endpoints
-A API tem um total de 24 endpoints, sendo divididos em 5 grupos: CRUD do user (que pode ser um doador e/ou donatário), session (login), donations 
-(doações), posts(solicitações de doações) e categories(que são as mesmas para donations e posts).
+A API tem um total de 12 endpoints, sendo divididos em 3 grupos: CRUD do user, session (login), contact 
+(Contatos)
 
 Endpoints:
 
